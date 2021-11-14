@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">kindFilms</string>
+    <string name="error_no_internet">Отсуствует подключение к интернет</string>
+    <string name="unknown_error">Неизвестная ошибка</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
