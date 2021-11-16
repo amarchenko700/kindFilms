@@ -40,12 +40,14 @@ class ListMovieFragment : Fragment() {
             it.recyclerViewListMovie.layoutManager = linearLayoutManager
             it.recyclerViewListMovie.adapter = adapter
         }
-        adapter.setOnItemClickListener { item: Movie, position: Int ->
-                onItemClick(
-                    item,
-                    position
-                )
-            }
+
+//        adapter.setClickListener(ListMovieAdapter)
+//        adapter.setOnItemClickListener { item: Movie, position: Int ->
+//                onItemClick(
+//                    item,
+//                    position
+//                )
+//            }
 //            adapter.setOnItemContextClickListener { v: View, item: NoteEntity, position: Int ->
 //                onItemContextClick(
 //                    v,

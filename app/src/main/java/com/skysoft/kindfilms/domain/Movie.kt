@@ -21,12 +21,15 @@ class Movie{
     private var title: String
     private var voteAverage: Float = 0f
     private var voteCount: Int = 0
+    private var imageURL: String
 
-    constructor(title: String){
+    constructor(title: String, imageURL: String){
         this.title = title
+        this.imageURL = imageURL
     }
 
     fun getTitle(): String = title
+    fun getImageURL(): String = imageURL
 
 }
 
