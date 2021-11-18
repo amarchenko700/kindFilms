@@ -67,12 +67,17 @@ class ListMovieAdapter : RecyclerView.Adapter<ListMovieAdapter.ListMovieViewHold
                         .onItemClick(adapter.getItem(adapterPosition), adapterPosition)
                 }
             })
-//            itemView.setOnLongClickListener(View.OnLongClickListener {
-//                if(adapter.getContextClickListener() != null){
-//                    adapter.getContextClickListener()
-//                        .onItemContextClick(it, )
-//                }
-//            })
+            itemView.setOnLongClickListener(View.OnLongClickListener {
+                if(adapter.getContextClickListener() != null){
+                    adapter.getContextClickListener().onItemContextClick(itemView, adapter.getItem(adapterPosition), adapterPosition)
+                }else{
+                    false
+                }
+            })
+        }
+
+        fun someFun():Boolean{
+            return true
         }
 
         fun fillMovie(movie: Movie) {
