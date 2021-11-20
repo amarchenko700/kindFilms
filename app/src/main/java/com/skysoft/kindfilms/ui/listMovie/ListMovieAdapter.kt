@@ -68,9 +68,13 @@ class ListMovieAdapter : RecyclerView.Adapter<ListMovieAdapter.ListMovieViewHold
                 }
             })
             itemView.setOnLongClickListener(View.OnLongClickListener {
-                if(adapter.getContextClickListener() != null){
-                    adapter.getContextClickListener().onItemContextClick(itemView, adapter.getItem(adapterPosition), adapterPosition)
-                }else{
+                if (adapter.getContextClickListener() != null) {
+                    adapter.getContextClickListener().onItemContextClick(
+                        itemView,
+                        adapter.getItem(adapterPosition),
+                        adapterPosition
+                    )
+                } else {
                     false
                 }
             })

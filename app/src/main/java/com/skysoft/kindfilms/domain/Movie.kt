@@ -1,9 +1,8 @@
 package com.skysoft.kindfilms.domain
 
-import android.icu.text.CaseMap
 import java.util.*
 
-class Movie{
+class Movie {
     private var adult: Boolean = false
     private var budget: Int = 0
     private lateinit var genres: List<Genres>
@@ -23,7 +22,7 @@ class Movie{
     private var voteCount: Int = 0
     private var imageURL: String
 
-    constructor(title: String, imageURL: String){
+    constructor(title: String, imageURL: String) {
         this.title = title
         this.imageURL = imageURL
     }

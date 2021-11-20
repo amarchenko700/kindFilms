@@ -13,7 +13,6 @@ import com.skysoft.kindfilms.domain.MoviesRepo
 
 class ListMovieFragment : Fragment() {
 
-    private lateinit var recyclerView: RecyclerView
     private lateinit var binding: FragmentListMovieBinding
     private lateinit var adapter: ListMovieAdapter
     private lateinit var clickedMovie: Movie
@@ -23,7 +22,7 @@ class ListMovieFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentListMovieBinding.inflate(inflater, container, false)
-        return binding!!.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,8 +50,8 @@ class ListMovieFragment : Fragment() {
 
     private fun initRecyclerView() {
         var linearLayoutManager = LinearLayoutManager(context)
-        linearLayoutManager.orientation = RecyclerView.HORIZONTAL;
-        binding?.let {
+        linearLayoutManager.orientation = RecyclerView.HORIZONTAL
+        binding.let {
             it.recyclerViewListMovie.layoutManager = linearLayoutManager
             it.recyclerViewListMovie.adapter = adapter
         }
