@@ -76,10 +76,6 @@ class ListMovieAdapter : RecyclerView.Adapter<ListMovieAdapter.ListMovieViewHold
             })
         }
 
-        fun someFun():Boolean{
-            return true
-        }
-
         fun fillMovie(movie: Movie) {
             nameMovieTextView.text = movie.getTitle()
 
