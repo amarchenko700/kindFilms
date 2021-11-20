@@ -74,8 +74,6 @@ class ListMovieFragment : Fragment() {
                 }
             }
         )
-
-
     }
 
     fun setAdapterData() {
