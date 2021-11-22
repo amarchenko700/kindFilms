@@ -4,4 +4,8 @@
     <string name="unknown_error">Неизвестная ошибка</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_profile_bottom_navigation">Профиль</string>
+    <string name="title_settings_bottom_navigation">Настройки</string>
+    <string name="title_about_bottom_navigation">О приложении</string>
+    <string name="title_home_bottom_navigation">Главная</string>
 </resources>

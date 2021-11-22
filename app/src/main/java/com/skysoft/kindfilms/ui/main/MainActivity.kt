@@ -1,14 +1,16 @@
 package com.skysoft.kindfilms.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import com.skysoft.kindfilms.R
 import com.skysoft.kindfilms.databinding.ActivityMainBinding
-import com.skysoft.kindfilms.domain.MoviesRepo
+import com.skysoft.kindfilms.ui.bottomNavigationFragments.AboutFragment
+import com.skysoft.kindfilms.ui.bottomNavigationFragments.ProfileFragment
+import com.skysoft.kindfilms.ui.bottomNavigationFragments.SettingsFragment
 import com.skysoft.kindfilms.ui.listMovie.ListMovieFragment
-import com.skysoft.kindfilms.ui.movie.MovieFragment
 
 class MainActivity : AppCompatActivity(), MainContract.View {
 
@@ -21,15 +23,21 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initBottomNavigation()
+        fragmentManager = supportFragmentManager
+
         presenter = MainPresenter()
         presenter.attach(this)
+    }
 
-        var repo = MoviesRepo
-        fragmentManager = supportFragmentManager
-        fragmentManager
-            .beginTransaction()
-            .replace(R.id.list_movie_container, ListMovieFragment())
-            .commit()
+    override fun getSupportFragmentManagerMainActivity(): FragmentManager{
+        return fragmentManager
+    }
+
+    private fun initBottomNavigation() {
+        binding.bottomNavigationMenu.setOnItemSelectedListener {
+            return@setOnItemSelectedListener presenter.onBottomNavigationClick(it)
+        }
     }
 
     override fun onDestroy() {
@@ -41,8 +49,8 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         Toast.makeText(baseContext, errorCode.toString(), Toast.LENGTH_LONG).show()
     }
 
-    private fun ErrorCode.toString(): String{
-        return when (this){
+    private fun ErrorCode.toString(): String {
+        return when (this) {
             ErrorCode.NO_INTERNET -> getString(R.string.error_no_internet)
             else -> getString(R.string.unknown_error)
         }
