@@ -1,5 +1,6 @@
 package com.skysoft.kindfilms.ui.main
 
+import android.os.Parcelable
 import android.view.MenuItem
 import androidx.fragment.app.FragmentManager
 import com.skysoft.kindfilms.R
@@ -8,36 +9,49 @@ import com.skysoft.kindfilms.ui.bottomNavigationFragments.AboutFragment
 import com.skysoft.kindfilms.ui.bottomNavigationFragments.ProfileFragment
 import com.skysoft.kindfilms.ui.bottomNavigationFragments.SettingsFragment
 import com.skysoft.kindfilms.ui.listMovie.ListMovieFragment
+import kotlinx.android.parcel.Parcelize
 
-class MainPresenter: MainContract.Presenter {
+@Parcelize
+class MainPresenter: Parcelable {
 
     private var view: MainContract.View? = null
+    private var idScreen = 0
     private lateinit var fragmentManager: FragmentManager
 
-    override fun attach(view: MainContract.View) {
+    fun attach(view: MainContract.View) {
         this.view = view
         fragmentManager = view.getSupportFragmentManagerMainActivity()
-        openPopularMovieList()
+        openScreen()
     }
 
-    override fun detach() {
+    fun openScreen(){
+        when (idScreen){
+            0 -> openPopularMovieList()
+            1 -> openProfile()
+            2 -> openSettings()
+            3 -> openAboutApp()
+        }
+    }
+
+    fun detach() {
         this.view = null
     }
 
-    override fun onMovieClick(item: Movie) {
+    fun onMovieClick(item: Movie) {
         TODO("Not yet implemented")
     }
 
-    override fun onBottomNavigationClick(item: MenuItem): Boolean {
+    fun onBottomNavigationClick(item: MenuItem): Boolean {
         if (item.itemId == R.id.item_home_bottom_navigation) {
-            openPopularMovieList()
+            idScreen = 0
         } else if (item.itemId == R.id.item_profile_bottom_navigation) {
-            openProfile()
+            idScreen = 1
         } else if (item.itemId == R.id.item_settings_bottom_navigation) {
-            openSettings()
+            idScreen = 2
         } else if (item.itemId == R.id.item_about_bottom_navigation) {
-            openAboutApp()
+            idScreen = 3
         }
+        openScreen()
         return true
     }
 

@@ -1,20 +1,19 @@
 package com.skysoft.kindfilms.ui.main
 
 import android.os.Bundle
-import android.view.MenuItem
+import android.os.Parcelable
+import android.os.PersistableBundle
 import android.widget.Toast
+import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import com.skysoft.kindfilms.R
 import com.skysoft.kindfilms.databinding.ActivityMainBinding
-import com.skysoft.kindfilms.ui.bottomNavigationFragments.AboutFragment
-import com.skysoft.kindfilms.ui.bottomNavigationFragments.ProfileFragment
-import com.skysoft.kindfilms.ui.bottomNavigationFragments.SettingsFragment
-import com.skysoft.kindfilms.ui.listMovie.ListMovieFragment
 
 class MainActivity : AppCompatActivity(), MainContract.View {
 
-    private lateinit var presenter: MainContract.Presenter
+    private val KEY_PRESENTER = "KEY_PRESENTER"
+    private lateinit var presenter: MainPresenter
     private lateinit var fragmentManager: FragmentManager
     private lateinit var binding: ActivityMainBinding
 
@@ -26,11 +25,15 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         initBottomNavigation()
         fragmentManager = supportFragmentManager
 
-        presenter = MainPresenter()
+        if (savedInstanceState == null) {
+            presenter = MainPresenter()
+        } else {
+            presenter = savedInstanceState.getParcelable<MainPresenter>(KEY_PRESENTER)!!
+        }
         presenter.attach(this)
     }
 
-    override fun getSupportFragmentManagerMainActivity(): FragmentManager{
+    override fun getSupportFragmentManagerMainActivity(): FragmentManager {
         return fragmentManager
     }
 
@@ -54,6 +57,11 @@ class MainActivity : AppCompatActivity(), MainContract.View {
             ErrorCode.NO_INTERNET -> getString(R.string.error_no_internet)
             else -> getString(R.string.unknown_error)
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable(KEY_PRESENTER, presenter)
     }
 
 }
