@@ -10,6 +10,15 @@ import androidx.fragment.app.FragmentManager
 import com.skysoft.kindfilms.R
 import com.skysoft.kindfilms.databinding.ActivityMainBinding
 
+import com.google.android.material.tabs.TabLayout
+
+import com.skysoft.kindfilms.ui.SampleFragmentPagerAdapter
+
+import androidx.viewpager.widget.ViewPager
+
+
+
+
 class MainActivity : AppCompatActivity(), MainContract.View {
 
     private val KEY_PRESENTER = "KEY_PRESENTER"
@@ -22,8 +31,9 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initBottomNavigation()
         fragmentManager = supportFragmentManager
+
+        initBottomNavigation()
 
         if (savedInstanceState == null) {
             presenter = MainPresenter()
@@ -31,6 +41,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
             presenter = savedInstanceState.getParcelable<MainPresenter>(KEY_PRESENTER)!!
         }
         presenter.attach(this)
+
     }
 
     override fun getSupportFragmentManagerMainActivity(): FragmentManager {
