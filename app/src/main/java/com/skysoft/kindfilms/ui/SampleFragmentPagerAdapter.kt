@@ -11,8 +11,10 @@ class SampleFragmentPagerAdapter(fm: FragmentManager?, private val context: Cont
     FragmentPagerAdapter(
         fm!!
     ) {
+
     val PAGE_COUNT = 3
     private val tabTitles = arrayOf("Popular", "Tab2", "Tab3")
+
     override fun getCount(): Int {
         return PAGE_COUNT
     }
@@ -26,4 +28,5 @@ class SampleFragmentPagerAdapter(fm: FragmentManager?, private val context: Cont
         // генерируем заголовок в зависимости от позиции
         return tabTitles[position]
     }
+
 }
