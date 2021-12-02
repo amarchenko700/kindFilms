@@ -1,22 +1,11 @@
 package com.skysoft.kindfilms.ui.main
 
 import android.os.Bundle
-import android.os.Parcelable
-import android.os.PersistableBundle
 import android.widget.Toast
-import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import com.skysoft.kindfilms.R
 import com.skysoft.kindfilms.databinding.ActivityMainBinding
-
-import com.google.android.material.tabs.TabLayout
-
-import com.skysoft.kindfilms.ui.SampleFragmentPagerAdapter
-
-import androidx.viewpager.widget.ViewPager
-
-
 
 
 class MainActivity : AppCompatActivity(), MainContract.View {

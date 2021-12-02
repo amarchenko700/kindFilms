@@ -1,23 +1,15 @@
 package com.skysoft.kindfilms.ui.listMovie
 
 import android.os.Bundle
-import android.view.*
-import android.widget.TableLayout
-import android.widget.Toast
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.skysoft.kindfilms.R
 import com.skysoft.kindfilms.databinding.FragmentListMovieBinding
-import com.skysoft.kindfilms.domain.Movie
-import com.skysoft.kindfilms.domain.MoviesRepo
-import com.skysoft.kindfilms.ui.SampleFragmentPagerAdapter
-import com.google.android.material.tabs.TabLayoutMediator
-import com.google.android.material.tabs.TabLayoutMediator.TabConfigurationStrategy
-
 
 class ListMovieFragment : Fragment() {
 
@@ -34,20 +26,16 @@ class ListMovieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adap = TabAdap(requireActivity())
+        val adap = TabLayoutAdapter(requireActivity())
 
         val viewPager = requireActivity().findViewById<ViewPager2>(R.id.viewpager)
-//        viewPager.adapter = SampleFragmentPagerAdapter(requireActivity().supportFragmentManager, requireContext())
 
         viewPager.adapter = adap
-
-//        val tabLayout = requireActivity().findViewById<TabLayout>(R.id.sliding_tabs)
-//        tabLayout.setupWithViewPager(viewPager)
 
         val tabLayout: TabLayout = requireActivity().findViewById<TabLayout>(R.id.sliding_tabs)
         val tabLayoutMediator = TabLayoutMediator(
             tabLayout, viewPager
-        ) { tab, position -> tab.text = "Страница " + (position + 1) }
+        ) { tab, position -> tab.text = adap.getPageTitle(position) }
         tabLayoutMediator.attach()
     }
 }
