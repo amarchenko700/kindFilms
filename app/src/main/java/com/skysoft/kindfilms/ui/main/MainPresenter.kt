@@ -18,6 +18,10 @@ class MainPresenter: Parcelable {
     private var idScreen = 0
     private lateinit var fragmentManager: FragmentManager
 
+    companion object {
+        private val TAG_LIST_MOVIE_FRAGMENT = "TAG_LIST_MOVIE_FRAGMENT"
+    }
+
     fun attach(view: MainContract.View) {
         this.view = view
         fragmentManager = view.getSupportFragmentManagerMainActivity()
@@ -77,9 +81,14 @@ class MainPresenter: Parcelable {
     }
 
     private fun openPopularMovieList() {
+        var existingFragment = fragmentManager.findFragmentByTag(TAG_LIST_MOVIE_FRAGMENT)
+        if(existingFragment == null){
+            existingFragment = ListMovieFragment()
+        }
         fragmentManager
             .beginTransaction()
-            .replace(R.id.fragment_container, ListMovieFragment())
+            .replace(R.id.fragment_container, existingFragment, TAG_LIST_MOVIE_FRAGMENT)
             .commit()
     }
+
 }
