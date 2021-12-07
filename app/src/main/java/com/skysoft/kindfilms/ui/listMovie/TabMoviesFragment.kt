@@ -8,22 +8,38 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.skysoft.kindfilms.R
-import com.skysoft.kindfilms.databinding.FragmentListMovieBinding
 import com.skysoft.kindfilms.databinding.FragmentTabMoviesBinding
 import com.skysoft.kindfilms.domain.Movie
 import com.skysoft.kindfilms.domain.MoviesRepo
 
-class TabMoviesFragment: Fragment() {
+class TabMoviesFragment(position: Int) : Fragment() {
 
     private lateinit var binding: FragmentTabMoviesBinding
     private lateinit var adapter: ListMovieAdapter
     private lateinit var clickedMovie: Movie
+    private var positionTabLayout: Int = 0
+    private val KEY_POSITION_TAB = "KEY_POSITION_TAB"
 
+    constructor (): this(0){
+
+    }
+
+    init {
+        positionTabLayout = position
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(KEY_POSITION_TAB, positionTabLayout)
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        if(savedInstanceState != null){
+            positionTabLayout = savedInstanceState.getInt(KEY_POSITION_TAB)
+        }
         binding = FragmentTabMoviesBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -41,8 +57,8 @@ class TabMoviesFragment: Fragment() {
         linearLayoutManager.orientation = RecyclerView.VERTICAL
         var gridLayoutManager = GridLayoutManager(context, 2)
         binding.let {
-//            it.recyclerViewListMovie.layoutManager = linearLayoutManager
-            it.recyclerViewListMovie.layoutManager = gridLayoutManager
+            it.recyclerViewListMovie.layoutManager = linearLayoutManager
+//            it.recyclerViewListMovie.layoutManager = gridLayoutManager
             it.recyclerViewListMovie.adapter = adapter
         }
         adapter.setClickListener(
@@ -73,7 +89,13 @@ class TabMoviesFragment: Fragment() {
     }
 
     fun setAdapterData() {
-        adapter.setData(MoviesRepo.getMovies() as List<Movie>)
+        if (positionTabLayout == 0) {
+            adapter.setData(MoviesRepo.getPopularMovies() as List<Movie>)
+        } else if (positionTabLayout == 1) {
+            adapter.setData(MoviesRepo.getTopRatedMovies() as List<Movie>)
+        } else if (positionTabLayout == 2) {
+            adapter.setData(MoviesRepo.getUpcomingMovies() as List<Movie>)
+        }
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
