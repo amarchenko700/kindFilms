@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.skysoft.kindfilms.R
@@ -38,8 +39,10 @@ class TabMoviesFragment: Fragment() {
     private fun initRecyclerView() {
         var linearLayoutManager = LinearLayoutManager(context)
         linearLayoutManager.orientation = RecyclerView.VERTICAL
+        var gridLayoutManager = GridLayoutManager(context, 2)
         binding.let {
-            it.recyclerViewListMovie.layoutManager = linearLayoutManager
+//            it.recyclerViewListMovie.layoutManager = linearLayoutManager
+            it.recyclerViewListMovie.layoutManager = gridLayoutManager
             it.recyclerViewListMovie.adapter = adapter
         }
         adapter.setClickListener(
