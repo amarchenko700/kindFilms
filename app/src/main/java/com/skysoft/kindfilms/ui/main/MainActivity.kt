@@ -64,5 +64,9 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         outState.putParcelable(KEY_PRESENTER, presenter)
     }
 
+    fun getPresenter(): MainPresenter{
+        return presenter
+    }
+
 }
 
