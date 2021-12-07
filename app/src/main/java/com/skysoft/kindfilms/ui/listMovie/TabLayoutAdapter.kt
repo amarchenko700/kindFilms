@@ -7,10 +7,10 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 class TabLayoutAdapter(fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {
 
-    private val tabTitles = arrayOf("Popular", "Tab2", "Tab3")
+    private val tabTitles = arrayOf("Popular", "Top rated", "Uncoming")
 
     override fun createFragment(position: Int): Fragment {
-        return TabMoviesFragment()
+        return TabMoviesFragment(position)
     }
 
     override fun getItemCount(): Int {
