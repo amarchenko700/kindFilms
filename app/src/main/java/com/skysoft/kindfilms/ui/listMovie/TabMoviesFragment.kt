@@ -11,21 +11,19 @@ import com.skysoft.kindfilms.R
 import com.skysoft.kindfilms.databinding.FragmentTabMoviesBinding
 import com.skysoft.kindfilms.domain.Movie
 import com.skysoft.kindfilms.domain.MoviesRepo
+import com.skysoft.kindfilms.ui.main.MainPresenter
 
-class TabMoviesFragment(position: Int) : Fragment() {
+class TabMoviesFragment() : Fragment() {
 
     private lateinit var binding: FragmentTabMoviesBinding
     private lateinit var adapter: ListMovieAdapter
     private lateinit var clickedMovie: Movie
     private var positionTabLayout: Int = 0
     private val KEY_POSITION_TAB = "KEY_POSITION_TAB"
+    private lateinit var presenter: MainPresenter
 
-    constructor (): this(0){
-
-    }
-
-    init {
-        positionTabLayout = position
+    constructor (position: Int): this(){
+        this.positionTabLayout = position
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
