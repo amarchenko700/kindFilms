@@ -10,8 +10,10 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.skysoft.kindfilms.R
 import com.skysoft.kindfilms.databinding.FragmentListMovieBinding
+import com.skysoft.kindfilms.ui.main.MainActivity
+import com.skysoft.kindfilms.ui.main.MainPresenter
 
-class ListMovieFragment : Fragment() {
+class ListMovieFragment(): Fragment() {
 
     private lateinit var binding: FragmentListMovieBinding
 
