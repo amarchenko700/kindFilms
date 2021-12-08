@@ -2,6 +2,7 @@ package com.skysoft.kindfilms.ui.main
 
 import android.os.Parcelable
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import com.skysoft.kindfilms.R
 import com.skysoft.kindfilms.domain.Movie
@@ -12,7 +13,7 @@ import com.skysoft.kindfilms.ui.listMovie.ListMovieFragment
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class MainPresenter: Parcelable {
+class MainPresenter: Parcelable, MainContract.Presenter {
 
     private var view: MainContract.View? = null
     private var idScreen = 0
@@ -22,7 +23,7 @@ class MainPresenter: Parcelable {
         private val TAG_LIST_MOVIE_FRAGMENT = "TAG_LIST_MOVIE_FRAGMENT"
     }
 
-    fun attach(view: MainContract.View) {
+    override fun attach(view: MainContract.View) {
         this.view = view
         this.fragmentManager = view.getSupportFragmentManagerMainActivity()
         openScreen()
@@ -37,15 +38,15 @@ class MainPresenter: Parcelable {
         }
     }
 
-    fun detach() {
+    override fun detach() {
         this.view = null
     }
 
-    fun onMovieClick(item: Movie) {
-        TODO("Not yet implemented")
+    override fun onMovieClick(item: Movie) {
+        Toast.makeText((view as MainActivity), item?.getTitle(), Toast.LENGTH_SHORT).show()
     }
 
-    fun onBottomNavigationClick(item: MenuItem): Boolean {
+    override fun onBottomNavigationClick(item: MenuItem): Boolean {
         if (item.itemId == R.id.item_home_bottom_navigation) {
             idScreen = 0
         } else if (item.itemId == R.id.item_profile_bottom_navigation) {
