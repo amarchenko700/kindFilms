@@ -2,6 +2,7 @@ package com.skysoft.kindfilms.ui.main
 
 import android.os.Parcelable
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import com.skysoft.kindfilms.R
@@ -18,6 +19,7 @@ class MainPresenter: Parcelable, MainContract.Presenter {
     private var view: MainContract.View? = null
     private var idScreen = 0
     private lateinit var fragmentManager: FragmentManager
+    private lateinit var clickedMovie: Movie
 
     companion object {
         private val TAG_LIST_MOVIE_FRAGMENT = "TAG_LIST_MOVIE_FRAGMENT"
@@ -46,6 +48,12 @@ class MainPresenter: Parcelable, MainContract.Presenter {
         Toast.makeText((view as MainActivity), item?.getTitle(), Toast.LENGTH_SHORT).show()
     }
 
+    override fun onContextMovieClick() {
+        Toast.makeText((view as MainActivity), "Удаляем " + clickedMovie.getTitle(), Toast.LENGTH_SHORT).show()
+    }
+
+
+
     override fun onBottomNavigationClick(item: MenuItem): Boolean {
         if (item.itemId == R.id.item_home_bottom_navigation) {
             idScreen = 0
@@ -58,6 +66,14 @@ class MainPresenter: Parcelable, MainContract.Presenter {
         }
         openScreen()
         return true
+    }
+
+    override fun setClickedMovie(item: Movie) {
+        this.clickedMovie = item
+    }
+
+    override fun getClickedMovie(): Movie {
+        return clickedMovie
     }
 
     private fun openProfile() {

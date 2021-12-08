@@ -18,7 +18,6 @@ class TabMoviesFragment() : Fragment() {
 
     private lateinit var binding: FragmentTabMoviesBinding
     private lateinit var adapter: ListMovieAdapter
-    private lateinit var clickedMovie: Movie
     private var positionTabLayout: Int = 0
     private val KEY_POSITION_TAB = "KEY_POSITION_TAB"
     private lateinit var presenter: MainPresenter
@@ -73,7 +72,7 @@ class TabMoviesFragment() : Fragment() {
                 override fun onItemContextClick(v: View?, item: Movie?, position: Int): Boolean {
                     v?.showContextMenu()
                     if (item != null) {
-                        clickedMovie = item
+                        presenter.setClickedMovie(item)
                     }
                     return true
                 }
@@ -99,8 +98,9 @@ class TabMoviesFragment() : Fragment() {
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
+        //requireContext()
         if (item.itemId == R.id.delete_note) {
-            Toast.makeText(context, "Удаляем " + clickedMovie.getTitle(), Toast.LENGTH_SHORT).show()
+            presenter.onContextMovieClick()
             return true
         }
         return super.onContextItemSelected(item)
