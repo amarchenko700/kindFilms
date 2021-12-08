@@ -1,12 +1,9 @@
 package com.skysoft.kindfilms.ui.main
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
-import com.skysoft.kindfilms.R
 import com.skysoft.kindfilms.databinding.ActivityMainBinding
-
 
 class MainActivity : AppCompatActivity(), MainContract.View {
 
@@ -39,7 +36,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     private fun initBottomNavigation() {
         binding.bottomNavigationMenu.setOnItemSelectedListener {
-            return@setOnItemSelectedListener presenter.onBottomNavigationClick(it)
+            presenter.onBottomNavigationClick(it)
         }
     }
 
@@ -48,23 +45,12 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         super.onDestroy()
     }
 
-    override fun showError(errorCode: ErrorCode) {
-        Toast.makeText(baseContext, errorCode.toString(), Toast.LENGTH_LONG).show()
-    }
-
-    private fun ErrorCode.toString(): String {
-        return when (this) {
-            ErrorCode.NO_INTERNET -> getString(R.string.error_no_internet)
-            else -> getString(R.string.unknown_error)
-        }
-    }
-
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putParcelable(KEY_PRESENTER, presenter)
     }
 
-    fun getPresenter(): MainPresenter{
+    fun getPresenter(): MainPresenter {
         return presenter
     }
 

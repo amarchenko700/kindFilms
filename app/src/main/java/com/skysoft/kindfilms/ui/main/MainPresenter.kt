@@ -2,8 +2,8 @@ package com.skysoft.kindfilms.ui.main
 
 import android.os.Parcelable
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.skysoft.kindfilms.R
 import com.skysoft.kindfilms.domain.Movie
@@ -14,7 +14,7 @@ import com.skysoft.kindfilms.ui.listMovie.ListMovieFragment
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class MainPresenter: Parcelable, MainContract.Presenter {
+class MainPresenter : Parcelable, MainContract.Presenter {
 
     private var view: MainContract.View? = null
     private var idScreen = 0
@@ -23,6 +23,9 @@ class MainPresenter: Parcelable, MainContract.Presenter {
 
     companion object {
         private const val TAG_LIST_MOVIE_FRAGMENT = "TAG_LIST_MOVIE_FRAGMENT"
+        private const val TAG_ABOUT_FRAGMENT = "TAG_ABOUT_FRAGMENT"
+        private const val TAG_PROFILE_FRAGMENT = "TAG_PROFILE_FRAGMENT"
+        private const val TAG_SETTINGS_FRAGMENT = "TAG_SETTINGS_FRAGMENT"
     }
 
     override fun attach(view: MainContract.View) {
@@ -31,36 +34,37 @@ class MainPresenter: Parcelable, MainContract.Presenter {
         openScreen()
     }
 
-    fun openScreen(){
-        when (idScreen){
-            0 -> openPopularMovieList()
-            1 -> openProfile()
-            2 -> openSettings()
-            3 -> openAboutApp()
-        }
-    }
-
     override fun detach() {
         this.view = null
     }
 
+    fun openScreen() {
+        when (idScreen) {
+            0 -> openFragment(ListMovieFragment(), TAG_LIST_MOVIE_FRAGMENT)
+            1 -> openFragment(ProfileFragment(), TAG_PROFILE_FRAGMENT)
+            2 -> openFragment(SettingsFragment(), TAG_SETTINGS_FRAGMENT)
+            3 -> openFragment(AboutFragment(), TAG_ABOUT_FRAGMENT)
+        }
+    }
+
     override fun onMovieClick(item: Movie) {
-        Toast.makeText((view as MainActivity), item?.getTitle(), Toast.LENGTH_SHORT).show()
+        Toast.makeText((view as MainActivity), item.getTitle(), Toast.LENGTH_SHORT).show()
     }
 
     override fun onContextMovieClick() {
-        Toast.makeText((view as MainActivity), "Удаляем " + clickedMovie.getTitle(), Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            (view as MainActivity),
+            "Удаляем " + clickedMovie.getTitle(),
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
     override fun onBottomNavigationClick(item: MenuItem): Boolean {
-        if (item.itemId == R.id.item_home_bottom_navigation) {
-            idScreen = 0
-        } else if (item.itemId == R.id.item_profile_bottom_navigation) {
-            idScreen = 1
-        } else if (item.itemId == R.id.item_settings_bottom_navigation) {
-            idScreen = 2
-        } else if (item.itemId == R.id.item_about_bottom_navigation) {
-            idScreen = 3
+        when (item.itemId) {
+            R.id.item_home_bottom_navigation -> idScreen = 0
+            R.id.item_profile_bottom_navigation -> idScreen = 1
+            R.id.item_settings_bottom_navigation -> idScreen = 2
+            R.id.item_about_bottom_navigation -> idScreen = 3
         }
         openScreen()
         return true
@@ -74,37 +78,14 @@ class MainPresenter: Parcelable, MainContract.Presenter {
         return clickedMovie
     }
 
-    private fun openProfile() {
-        fragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_container, ProfileFragment())
-            .commit()
-    }
-
-    private fun openSettings() {
-        fragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_container, SettingsFragment())
-            .commit()
-    }
-
-    private fun openAboutApp() {
-        fragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_container, AboutFragment())
-            .commit()
-    }
-
-    private fun openPopularMovieList() {
-        var existingListMovieFragment = fragmentManager.findFragmentByTag(TAG_LIST_MOVIE_FRAGMENT)
-        if(existingListMovieFragment == null){
-            existingListMovieFragment = ListMovieFragment()
+    private fun openFragment(fragment: Fragment, tag: String) {
+        var fragmentToOpen = fragmentManager.findFragmentByTag(tag)
+        if (fragmentToOpen == null) {
+            fragmentToOpen = fragment
         }
-
         fragmentManager
             .beginTransaction()
-            .replace(R.id.fragment_container, existingListMovieFragment, TAG_LIST_MOVIE_FRAGMENT)
+            .replace(R.id.fragment_container, fragmentToOpen, tag)
             .commit()
     }
-
 }

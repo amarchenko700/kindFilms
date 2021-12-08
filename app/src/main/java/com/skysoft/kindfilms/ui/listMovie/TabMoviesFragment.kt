@@ -2,7 +2,6 @@ package com.skysoft.kindfilms.ui.listMovie
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,7 +21,7 @@ class TabMoviesFragment() : Fragment() {
     private val KEY_POSITION_TAB = "KEY_POSITION_TAB"
     private lateinit var presenter: MainPresenter
 
-    constructor (position: Int): this(){
+    constructor (position: Int) : this() {
         this.positionTabLayout = position
     }
 
@@ -30,12 +29,13 @@ class TabMoviesFragment() : Fragment() {
         super.onSaveInstanceState(outState)
         outState.putInt(KEY_POSITION_TAB, positionTabLayout)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             positionTabLayout = savedInstanceState.getInt(KEY_POSITION_TAB)
         }
         binding = FragmentTabMoviesBinding.inflate(inflater, container, false)
