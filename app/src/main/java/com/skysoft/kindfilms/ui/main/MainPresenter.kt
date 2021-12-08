@@ -22,7 +22,7 @@ class MainPresenter: Parcelable, MainContract.Presenter {
     private lateinit var clickedMovie: Movie
 
     companion object {
-        private val TAG_LIST_MOVIE_FRAGMENT = "TAG_LIST_MOVIE_FRAGMENT"
+        private const val TAG_LIST_MOVIE_FRAGMENT = "TAG_LIST_MOVIE_FRAGMENT"
     }
 
     override fun attach(view: MainContract.View) {
@@ -51,8 +51,6 @@ class MainPresenter: Parcelable, MainContract.Presenter {
     override fun onContextMovieClick() {
         Toast.makeText((view as MainActivity), "Удаляем " + clickedMovie.getTitle(), Toast.LENGTH_SHORT).show()
     }
-
-
 
     override fun onBottomNavigationClick(item: MenuItem): Boolean {
         if (item.itemId == R.id.item_home_bottom_navigation) {
