@@ -11,6 +11,7 @@ import com.skysoft.kindfilms.R
 import com.skysoft.kindfilms.databinding.FragmentTabMoviesBinding
 import com.skysoft.kindfilms.domain.Movie
 import com.skysoft.kindfilms.domain.MoviesRepo
+import com.skysoft.kindfilms.ui.main.MainActivity
 import com.skysoft.kindfilms.ui.main.MainPresenter
 
 class TabMoviesFragment() : Fragment() {
@@ -48,6 +49,7 @@ class TabMoviesFragment() : Fragment() {
         adapter = ListMovieAdapter()
         initRecyclerView()
         setAdapterData()
+        presenter = (requireActivity() as MainActivity).getPresenter()
     }
 
     private fun initRecyclerView() {
@@ -62,7 +64,7 @@ class TabMoviesFragment() : Fragment() {
         adapter.setClickListener(
             object : ListMovieAdapter.onItemClickListener {
                 override fun onItemClick(item: Movie?, position: Int) {
-                    Toast.makeText(context, item?.getTitle(), Toast.LENGTH_SHORT).show()
+                    presenter.onMovieClick(item!!)
                 }
             }
         )
