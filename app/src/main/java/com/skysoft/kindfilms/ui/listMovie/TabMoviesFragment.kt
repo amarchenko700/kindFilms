@@ -25,6 +25,11 @@ class TabMoviesFragment() : Fragment() {
         this.positionTabLayout = position
     }
 
+    override fun onStop() {
+        super.onStop()
+        unregisterForContextMenu(requireView())
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt(KEY_POSITION_TAB, positionTabLayout)
@@ -56,8 +61,8 @@ class TabMoviesFragment() : Fragment() {
         linearLayoutManager.orientation = RecyclerView.VERTICAL
         var gridLayoutManager = GridLayoutManager(context, 2)
         binding.let {
-            it.recyclerViewListMovie.layoutManager = linearLayoutManager
-//            it.recyclerViewListMovie.layoutManager = gridLayoutManager
+            //it.recyclerViewListMovie.layoutManager = linearLayoutManager
+            it.recyclerViewListMovie.layoutManager = gridLayoutManager
             it.recyclerViewListMovie.adapter = adapter
         }
         adapter.setClickListener(
