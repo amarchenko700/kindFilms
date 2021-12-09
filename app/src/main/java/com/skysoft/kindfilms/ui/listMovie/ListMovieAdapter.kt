@@ -17,7 +17,6 @@ class ListMovieAdapter : RecyclerView.Adapter<ListMovieAdapter.ListMovieViewHold
     private lateinit var contextClickListener: OnItemContextClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListMovieViewHolder {
-        // При старте приложения выполняется 2 раза. Почему?
         return ListMovieViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false), this
         )
