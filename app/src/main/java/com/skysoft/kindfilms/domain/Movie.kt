@@ -36,6 +36,11 @@ data class Country(var iso: String, var name: String)
 
 data class Genres(var id: Int, var name: String)
 
-enum class statusMovie {
-    Released
+enum class statusMovie (synonym: String) {
+    RUMORED("Ходят слухи"),
+    PLANNED("Планируется"),
+    IN_PRODUCTION("В производстве"),
+    POST_PRODUCTION("На этапе выпуска"),
+    RELEASED("Вышел"),
+    CANCELED("Отменен")
 }
