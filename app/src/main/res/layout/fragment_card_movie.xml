@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/card_movie_title_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_title_movie"
+        tools:text="Название фильма" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/card_movie_banner_image_view"
+            android:layout_width="@dimen/image_movie_width"
+            android:layout_height="@dimen/image_movie_height"
+            android:layout_gravity="start" />
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:columnCount="2">
+
+            <TextView
+                style="PreviewDetailMovie"
+                android:text="@string/date_release_detail_movie" />
+
+            <TextView
+                android:id="@+id/card_movie_year_text_view"
+                style="PreviewDetailMovie"
+                tools:text="2021" />
+
+            <TextView
+                android:id="@+id/card_movie_budget_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_detail_movie"
+                tools:text="2021" />
+        </GridLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

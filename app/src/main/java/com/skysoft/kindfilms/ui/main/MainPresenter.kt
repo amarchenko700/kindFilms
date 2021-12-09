@@ -11,6 +11,7 @@ import com.skysoft.kindfilms.ui.bottomNavigationFragments.AboutFragment
 import com.skysoft.kindfilms.ui.bottomNavigationFragments.ProfileFragment
 import com.skysoft.kindfilms.ui.bottomNavigationFragments.SettingsFragment
 import com.skysoft.kindfilms.ui.listMovie.ListMovieFragment
+import com.skysoft.kindfilms.ui.movie.CardMovieFragment
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -26,6 +27,7 @@ class MainPresenter : Parcelable, MainContract.Presenter {
         private const val TAG_ABOUT_FRAGMENT = "TAG_ABOUT_FRAGMENT"
         private const val TAG_PROFILE_FRAGMENT = "TAG_PROFILE_FRAGMENT"
         private const val TAG_SETTINGS_FRAGMENT = "TAG_SETTINGS_FRAGMENT"
+        private const val TAG_CARD_MOVIE_FRAGMENT = "TAG_CARD_MOVIE_FRAGMENT"
     }
 
     override fun attach(view: MainContract.View) {
@@ -48,6 +50,7 @@ class MainPresenter : Parcelable, MainContract.Presenter {
     }
 
     override fun onMovieClick(item: Movie) {
+        openFragment(CardMovieFragment(item), TAG_CARD_MOVIE_FRAGMENT, true)
         Toast.makeText((view as MainActivity), item.getTitle(), Toast.LENGTH_SHORT).show()
     }
 
@@ -78,14 +81,22 @@ class MainPresenter : Parcelable, MainContract.Presenter {
         return clickedMovie
     }
 
-    private fun openFragment(fragment: Fragment, tag: String) {
+    private fun openFragment(fragment: Fragment, tag: String, addToBackStack : Boolean = false) {
         var fragmentToOpen = fragmentManager.findFragmentByTag(tag)
         if (fragmentToOpen == null) {
             fragmentToOpen = fragment
         }
+        if(addToBackStack){
         fragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, fragmentToOpen, tag)
+            .addToBackStack(null)
             .commit()
+        }else{
+            fragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragmentToOpen, tag)
+                .commit()
+        }
     }
 }
