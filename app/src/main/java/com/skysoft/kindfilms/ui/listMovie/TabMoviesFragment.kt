@@ -34,7 +34,7 @@ class TabMoviesFragment() : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         if (savedInstanceState != null) {
             positionTabLayout = savedInstanceState.getInt(KEY_POSITION_TAB)
         }
@@ -52,7 +52,7 @@ class TabMoviesFragment() : Fragment() {
     }
 
     private fun initRecyclerView() {
-        var linearLayoutManager = LinearLayoutManager(context)
+        val linearLayoutManager = LinearLayoutManager(context)
         linearLayoutManager.orientation = RecyclerView.VERTICAL
         var gridLayoutManager = GridLayoutManager(context, 2)
         binding.let {
@@ -81,24 +81,23 @@ class TabMoviesFragment() : Fragment() {
     }
 
     override fun onCreateContextMenu(
-        menu: ContextMenu, v: View, menuInfo: ContextMenu.ContextMenuInfo?
+        menu: ContextMenu,
+        v: View,
+        menuInfo: ContextMenu.ContextMenuInfo?
     ) {
         super.onCreateContextMenu(menu, v, menuInfo)
         requireActivity().menuInflater.inflate(R.menu.movies_list_context_menu, menu)
     }
 
-    fun setAdapterData() {
-        if (positionTabLayout == 0) {
-            adapter.setData(MoviesRepo.getPopularMovies() as List<Movie>)
-        } else if (positionTabLayout == 1) {
-            adapter.setData(MoviesRepo.getTopRatedMovies() as List<Movie>)
-        } else if (positionTabLayout == 2) {
-            adapter.setData(MoviesRepo.getUpcomingMovies() as List<Movie>)
+    private fun setAdapterData() {
+        when (positionTabLayout) {
+            0 -> adapter.setData(MoviesRepo.getPopularMovies() as List<Movie>)
+            1 -> adapter.setData(MoviesRepo.getTopRatedMovies() as List<Movie>)
+            2 -> adapter.setData(MoviesRepo.getUpcomingMovies() as List<Movie>)
         }
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
-        //requireContext()
         if (item.itemId == R.id.delete_note) {
             presenter.onContextMovieClick()
             return true
