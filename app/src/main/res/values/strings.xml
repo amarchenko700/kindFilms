@@ -8,4 +8,5 @@
     <string name="title_settings_bottom_navigation">Настройки</string>
     <string name="title_about_bottom_navigation">О приложении</string>
     <string name="title_home_bottom_navigation">Главная</string>
+    <string name="date_release_detail_movie">Год выпуска</string>
 </resources>
