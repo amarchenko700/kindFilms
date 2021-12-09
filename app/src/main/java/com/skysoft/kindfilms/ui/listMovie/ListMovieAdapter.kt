@@ -13,8 +13,8 @@ import java.util.*
 
 class ListMovieAdapter : RecyclerView.Adapter<ListMovieAdapter.ListMovieViewHolder>() {
     private var data: List<Movie> = ArrayList<Movie>()
-    private lateinit var clickListener: onItemClickListener
-    private lateinit var contextClickListener: onItemContextClickListener
+    private lateinit var clickListener: OnItemClickListener
+    private lateinit var contextClickListener: OnItemContextClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListMovieViewHolder {
         // При старте приложения выполняется 2 раза. Почему?
@@ -29,11 +29,11 @@ class ListMovieAdapter : RecyclerView.Adapter<ListMovieAdapter.ListMovieViewHold
     fun getClickListener() = clickListener
     fun getContextClickListener() = contextClickListener
 
-    fun setClickListener(clickListener: onItemClickListener) {
+    fun setClickListener(clickListener: OnItemClickListener) {
         this.clickListener = clickListener
     }
 
-    fun setContextClickListener(contextClickListener: onItemContextClickListener) {
+    fun setContextClickListener(contextClickListener: OnItemContextClickListener) {
         this.contextClickListener = contextClickListener
     }
 
@@ -41,11 +41,11 @@ class ListMovieAdapter : RecyclerView.Adapter<ListMovieAdapter.ListMovieViewHold
         this.data = data
     }
 
-    interface onItemClickListener {
+    interface OnItemClickListener {
         fun onItemClick(item: Movie?, position: Int)
     }
 
-    interface onItemContextClickListener {
+    interface OnItemContextClickListener {
         fun onItemContextClick(v: View?, item: Movie?, position: Int): Boolean
     }
 

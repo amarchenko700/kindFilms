@@ -61,14 +61,14 @@ class TabMoviesFragment() : Fragment() {
             it.recyclerViewListMovie.adapter = adapter
         }
         adapter.setClickListener(
-            object : ListMovieAdapter.onItemClickListener {
+            object : ListMovieAdapter.OnItemClickListener {
                 override fun onItemClick(item: Movie?, position: Int) {
                     presenter.onMovieClick(item!!)
                 }
             }
         )
         adapter.setContextClickListener(
-            object : ListMovieAdapter.onItemContextClickListener {
+            object : ListMovieAdapter.OnItemContextClickListener {
                 override fun onItemContextClick(v: View?, item: Movie?, position: Int): Boolean {
                     v?.showContextMenu()
                     if (item != null) {
