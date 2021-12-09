@@ -33,9 +33,14 @@ class ListMovieFragment : Fragment() {
         viewPager.adapter = adap
 
         val tabLayout: TabLayout = requireActivity().findViewById<TabLayout>(R.id.sliding_tabs)
-        val tabLayoutMediator = TabLayoutMediator(
-            tabLayout, viewPager
-        ) { tab, position -> tab.text = adap.getPageTitle(position) }
+        val tabLayoutMediator = TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = adap.getPageTitle(position)
+            if(position == 2){
+                val badge = tab.orCreateBadge
+                badge.number = 2
+            }
+        }
         tabLayoutMediator.attach()
+
     }
 }
