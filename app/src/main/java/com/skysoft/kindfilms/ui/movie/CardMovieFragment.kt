@@ -1,22 +1,24 @@
 package com.skysoft.kindfilms.ui.movie
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.skysoft.kindfilms.R
 import com.skysoft.kindfilms.databinding.FragmentCardMovieBinding
-import com.skysoft.kindfilms.databinding.FragmentTabMoviesBinding
 import com.skysoft.kindfilms.domain.Movie
 
-class CardMovieFragment (movie: Movie) : Fragment() {
+class CardMovieFragment() : Fragment() {
 
     private lateinit var binding: FragmentCardMovieBinding
-    private var movie: Movie
+    private lateinit var movie: Movie
 
-    init {
+    constructor(movie: Movie) : this() {
+        this.movie = movie
+    }
+
+    fun setMovie(movie: Movie){
         this.movie = movie
     }
 
@@ -34,8 +36,15 @@ class CardMovieFragment (movie: Movie) : Fragment() {
         fillCardMovie(movie)
     }
 
-    fun fillCardMovie(movie: Movie){
+    fun fillCardMovie(movie: Movie) {
         binding.cardMovieTitleTextView.setText(movie.getTitle())
+        binding.cardMovieYearTextView.setText(movie.getReleaseYear())
+        binding.cardMovieBudgetTextView.setText(movie.getBudget().toString())
+        binding.cardMovieGenresTextView.setText(movie.getGenresString())
+        binding.cardMovieRuntimeTextView.setText(movie.getRunTime().toString())
+        binding.cardMovieCountryTextView.setText(movie.getCountry().name)
+        binding.cardMovieStatusTextView.setText(movie.getStatus().synonym)
+        binding.cardMovieOverviewTextView.setText(movie.getOverview())
 
         Glide
             .with(binding.cardMovieBannerImageView.context)
@@ -43,5 +52,4 @@ class CardMovieFragment (movie: Movie) : Fragment() {
             .optionalCenterInside()
             .into(binding.cardMovieBannerImageView)
     }
-
 }

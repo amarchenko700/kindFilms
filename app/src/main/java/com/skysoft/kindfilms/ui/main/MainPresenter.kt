@@ -3,6 +3,7 @@ package com.skysoft.kindfilms.ui.main
 import android.os.Parcelable
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.skysoft.kindfilms.R
@@ -46,12 +47,14 @@ class MainPresenter : Parcelable, MainContract.Presenter {
             1 -> openFragment(ProfileFragment(), TAG_PROFILE_FRAGMENT)
             2 -> openFragment(SettingsFragment(), TAG_SETTINGS_FRAGMENT)
             3 -> openFragment(AboutFragment(), TAG_ABOUT_FRAGMENT)
+            4 -> openFragment(CardMovieFragment(clickedMovie), TAG_CARD_MOVIE_FRAGMENT)
         }
     }
 
     override fun onMovieClick(item: Movie) {
-        openFragment(CardMovieFragment(item), TAG_CARD_MOVIE_FRAGMENT, true)
-        Toast.makeText((view as MainActivity), item.getTitle(), Toast.LENGTH_SHORT).show()
+        idScreen = 4
+        clickedMovie = item
+        openScreen()
     }
 
     override fun onContextMovieClick() {
@@ -81,22 +84,21 @@ class MainPresenter : Parcelable, MainContract.Presenter {
         return clickedMovie
     }
 
-    private fun openFragment(fragment: Fragment, tag: String, addToBackStack : Boolean = false) {
+    private fun openFragment(fragment: Fragment, tag: String) {
         var fragmentToOpen = fragmentManager.findFragmentByTag(tag)
         if (fragmentToOpen == null) {
             fragmentToOpen = fragment
         }
-        if(addToBackStack){
+
+        if(fragmentToOpen is CardMovieFragment){
+            fragmentToOpen.setMovie(clickedMovie)
+        }
+
         fragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, fragmentToOpen, tag)
             .addToBackStack(null)
             .commit()
-        }else{
-            fragmentManager
-                .beginTransaction()
-                .replace(R.id.fragment_container, fragmentToOpen, tag)
-                .commit()
-        }
     }
+
 }

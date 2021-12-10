@@ -8,5 +8,11 @@
     <string name="title_settings_bottom_navigation">Настройки</string>
     <string name="title_about_bottom_navigation">О приложении</string>
     <string name="title_home_bottom_navigation">Главная</string>
-    <string name="date_release_detail_movie">Год выпуска</string>
+    <string name="date_release_detail_movie">Год выпуска:</string>
+    <string name="card_movie_budget_text_view">Бюджет:</string>
+    <string name="card_movie_genres_text_view">Жанр:</string>
+    <string name="card_movie_runtime_text_view">Длительность:</string>
+    <string name="card_movie_country_text_view">Страна:</string>
+    <string name="card_movie_status_text_view">Статус:</string>
+    <string name="card_movie_overview_text_view">Описание:</string>
 </resources>
