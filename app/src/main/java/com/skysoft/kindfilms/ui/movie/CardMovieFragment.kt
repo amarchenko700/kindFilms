@@ -45,6 +45,7 @@ class CardMovieFragment() : Fragment() {
         binding.cardMovieCountryTextView.setText(movie.getCountry().name)
         binding.cardMovieStatusTextView.setText(movie.getStatus().synonym)
         binding.cardMovieOverviewTextView.setText(movie.getOverview())
+        binding.cardMovieRateTextView.setText(movie.getVoteAverage().toString())
 
         Glide
             .with(binding.cardMovieBannerImageView.context)

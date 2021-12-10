@@ -50,6 +50,7 @@ class Movie() : Parcelable {
     fun getCountry(): Country = production_countries
     fun getStatus(): StatusMovie = StatusMovie.RELEASED
     fun getOverview(): String = overview
+    fun getVoteAverage(): Float = 7.5f
 }
 
 data class Country(var iso: String, var name: String)
