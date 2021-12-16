@@ -16,4 +16,5 @@
     <string name="card_movie_status_text_view">Статус:</string>
     <string name="card_movie_overview_text_view">Описание:</string>
     <string name="card_movie_Rate_text_view">Рейтинг:</string>
+    <string name="title_slash_screen_text_view">Добрые фильмы</string>
 </resources>

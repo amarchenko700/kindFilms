@@ -11,4 +11,13 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_splashscreenlogo"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_slash_screen_text_view"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_slash_screen"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
 </LinearLayout>
