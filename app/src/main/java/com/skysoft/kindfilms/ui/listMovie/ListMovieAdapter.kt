@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.bumptech.glide.Glide
 import com.skysoft.kindfilms.R
 import com.skysoft.kindfilms.domain.Movie
@@ -82,12 +83,12 @@ class ListMovieAdapter : RecyclerView.Adapter<ListMovieAdapter.ListMovieViewHold
 
         fun fillMovie(movie: Movie) {
             nameMovieTextView.text = movie.getTitle()
-
-            Glide
-                .with(bannerImageView.context)
-                .load(movie.getImageURL())
-                .optionalCenterInside()
-                .into(bannerImageView)
+            bannerImageView.load(movie.getImageURL())
+//            Glide
+//                .with(bannerImageView.context)
+//                .load(movie.getImageURL())
+//                .optionalCenterInside()
+//                .into(bannerImageView)
         }
     }
 }

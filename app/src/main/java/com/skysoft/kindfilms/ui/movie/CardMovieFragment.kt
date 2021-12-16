@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import coil.load
 import com.bumptech.glide.Glide
 import com.skysoft.kindfilms.databinding.FragmentCardMovieBinding
 import com.skysoft.kindfilms.domain.Movie
@@ -46,11 +47,11 @@ class CardMovieFragment() : Fragment() {
         binding.cardMovieStatusTextView.setText(movie.getStatus().synonym)
         binding.cardMovieOverviewTextView.setText(movie.getOverview())
         binding.cardMovieRateTextView.setText(movie.getVoteAverage().toString())
-
-        Glide
-            .with(binding.cardMovieBannerImageView.context)
-            .load(movie.getImageURL())
-            .optionalCenterInside()
-            .into(binding.cardMovieBannerImageView)
+        binding.cardMovieBannerImageView.load(movie.getImageURL())
+//        Glide
+//            .with(binding.cardMovieBannerImageView.context)
+//            .load(movie.getImageURL())
+//            .optionalCenterInside()
+//            .into(binding.cardMovieBannerImageView)
     }
 }
