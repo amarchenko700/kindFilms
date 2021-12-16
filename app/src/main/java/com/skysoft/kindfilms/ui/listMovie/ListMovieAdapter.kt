@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.skysoft.kindfilms.R
 import com.skysoft.kindfilms.domain.Movie
 import java.util.*
@@ -88,6 +89,8 @@ class ListMovieAdapter : RecyclerView.Adapter<ListMovieAdapter.ListMovieViewHold
 //                .with(bannerImageView.context)
 //                .load(movie.getImageURL())
 //                .optionalCenterInside()
+//                .diskCacheStrategy(DiskCacheStrategy.NONE)
+//                .skipMemoryCache(true)
 //                .into(bannerImageView)
         }
     }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import coil.load
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.skysoft.kindfilms.databinding.FragmentCardMovieBinding
 import com.skysoft.kindfilms.domain.Movie
 
@@ -52,6 +53,8 @@ class CardMovieFragment() : Fragment() {
 //            .with(binding.cardMovieBannerImageView.context)
 //            .load(movie.getImageURL())
 //            .optionalCenterInside()
+//            .diskCacheStrategy(DiskCacheStrategy.NONE)
+//            .skipMemoryCache(true)
 //            .into(binding.cardMovieBannerImageView)
     }
 }
