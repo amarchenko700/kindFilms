@@ -11,4 +11,10 @@
         android:text="О приложении"
         android:textSize="48sp"/>
 
+    <Button
+        android:id="@+id/extra_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Дополнительно"/>
+
 </LinearLayout>
