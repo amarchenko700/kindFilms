@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/card_movie_padding">
+
+        <TextView
+            android:id="@+id/card_movie_title_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_title_movie"
+            tools:text="Название фильма" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/card_movie_banner_image_view"
+                android:layout_width="@dimen/image_movie_width"
+                android:layout_height="@dimen/image_movie_height"
+                android:layout_gravity="start"
+                android:layout_marginEnd="@dimen/margin_between_words_detail_movie"
+                tools:background="@color/black" />
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:columnCount="2">
+
+                <TextView
+                    style="@style/PreviewDetailMovie"
+                    android:text="@string/date_release_detail_movie" />
+
+                <TextView
+                    android:id="@+id/card_movie_year_text_view"
+                    style="@style/PreviewDetailMovie"
+                    tools:text="2021" />
+
+                <TextView
+                    style="@style/PreviewDetailMovie"
+                    android:text="@string/card_movie_budget_text_view" />
+
+                <TextView
+                    android:id="@+id/card_movie_budget_text_view"
+                    style="@style/PreviewDetailMovie"
+                    tools:text="2000000" />
+
+                <TextView
+                    style="@style/PreviewDetailMovie"
+                    android:text="@string/card_movie_genres_text_view" />
+
+                <TextView
+                    android:id="@+id/card_movie_genres_text_view"
+                    style="@style/PreviewDetailMovie"
+                    android:ems="7"
+                    tools:text="Фантастика, приключения, детективы" />
+
+                <TextView
+                    style="@style/PreviewDetailMovie"
+                    android:text="@string/card_movie_runtime_text_view" />
+
+                <TextView
+                    android:id="@+id/card_movie_runtime_text_view"
+                    style="@style/PreviewDetailMovie"
+                    tools:text="120" />
+
+                <TextView
+                    style="@style/PreviewDetailMovie"
+                    android:text="@string/card_movie_country_text_view" />
+
+                <TextView
+                    android:id="@+id/card_movie_country_text_view"
+                    style="@style/PreviewDetailMovie"
+                    tools:text="Россия" />
+
+                <TextView
+                    style="@style/PreviewDetailMovie"
+                    android:text="@string/card_movie_status_text_view" />
+
+                <TextView
+                    android:id="@+id/card_movie_status_text_view"
+                    style="@style/PreviewDetailMovie"
+                    tools:text="Вышел" />
+
+                <TextView
+                    style="@style/PreviewDetailMovie"
+                    android:text="@string/card_movie_Rate_text_view" />
+
+                <TextView
+                    android:id="@+id/card_movie_Rate_text_view"
+                    style="@style/PreviewDetailMovie"
+                    tools:text="Вышел" />
+            </GridLayout>
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/PreviewDetailMovie"
+            android:text="@string/card_movie_overview_text_view" />
+
+        <TextView
+            android:id="@+id/card_movie_overview_text_view"
+            style="@style/PreviewDetailMovie"
+            tools:text="Описание фильма" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size_detail_movie">20sp</dimen>
+    <dimen name="text_size_card_movie">16sp</dimen>
+    <dimen name="text_size_title_movie">32sp</dimen>
+    <dimen name="image_movie_width">150dp</dimen>
+    <dimen name="image_movie_height">225dp</dimen>
+    <dimen name="margin_between_words_detail_movie">7dp</dimen>
+    <dimen name="card_movie_padding">8dp</dimen>
+    <dimen name="text_size_slash_screen">45sp</dimen>
+</resources>
